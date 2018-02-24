@@ -16,18 +16,13 @@ module.exports = {
     devtool: "source-map",
     module: {
         rules: [{
-            enforce: "pre",
+            use: {
+               loader:'babel-loader',
+               options: { presets: ['es2015'] }
+            },
             test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "eslint-loader"
-        }, {
-            test: '/\.js$/',
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015']
-            }
-        }, {
+            exclude: /node_modules/
+         }, {
             test: /\.scss$/,
             use: extractSass.extract({
                 use: [{

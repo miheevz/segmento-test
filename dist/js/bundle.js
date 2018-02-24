@@ -65,20 +65,18 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_main_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_questions_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_types_js__ = __webpack_require__(3);
 
 
+__webpack_require__(1);
 
+var _questions = __webpack_require__(2);
 
+var _types = __webpack_require__(3);
 
-let finalUrl = 'https://segmento.ru/survey_thankyou',
+var finalUrl = 'https://segmento.ru/survey_thankyou',
     bannerWrapper = document.querySelector('.banner'),
     startBtn = document.getElementById('btn-start'),
     finishBtn = document.getElementById('btn-finish'),
@@ -86,13 +84,11 @@ let finalUrl = 'https://segmento.ru/survey_thankyou',
     questionWrapper = document.querySelector('.banner__item--question'),
     finishWrapper = document.querySelector('.banner__item--finish');
 
-let user = {
+var user = {
     answers: [],
     nextQuestion: 1,
     isSettedUp: false
 };
-
-
 
 // Events
 document.addEventListener('DOMContentLoaded', initUser);
@@ -109,7 +105,7 @@ function initUser() {
         user = JSON.parse(localStorage.getItem('user-data'));
         user.isSettedUp = false;
         startInterview();
-    } 
+    }
 }
 
 /** 
@@ -138,30 +134,29 @@ function startInterview() {
  */
 function initQuestion(index) {
 
-    let answers = document.querySelectorAll('.answer__text'),
+    var answers = document.querySelectorAll('.answer__text'),
         questionLabel = document.querySelector('.question-label');
 
-    questionLabel.innerHTML = `Вопрос ${index} из ${Object.keys(__WEBPACK_IMPORTED_MODULE_1__modules_questions_js__["a" /* questions */]).length}`;
+    questionLabel.innerHTML = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + index + ' \u0438\u0437 ' + Object.keys(_questions.questions).length;
     if (!user.isSettedUp) {
         user.isSettedUp = true;
-        for (let i = 0; i < answers.length; i++) {
-            answers[i].innerHTML = __WEBPACK_IMPORTED_MODULE_1__modules_questions_js__["a" /* questions */][index][i + 1];
-            answers[i].classList.add(`answer__text--n${i + 1}`);
+        for (var i = 0; i < answers.length; i++) {
+            answers[i].innerHTML = _questions.questions[index][i + 1];
+            answers[i].classList.add('answer__text--n' + (i + 1));
             answers[i].answer = i + 1;
-            answers[i].addEventListener('click', (e) => {
+            answers[i].addEventListener('click', function (e) {
                 user.answers.push(e.target.answer || null);
-                if (user.answers.length < Object.keys(__WEBPACK_IMPORTED_MODULE_1__modules_questions_js__["a" /* questions */]).length) {
+                if (user.answers.length < Object.keys(_questions.questions).length) {
                     user.nextQuestion++;
                     initQuestion(user.nextQuestion);
                 } else {
                     finishInterview();
                 }
-
             });
         }
     } else {
-        for (let i = 0; i < answers.length; i++) {
-            answers[i].innerHTML = __WEBPACK_IMPORTED_MODULE_1__modules_questions_js__["a" /* questions */][index][i + 1];
+        for (var _i = 0; _i < answers.length; _i++) {
+            answers[_i].innerHTML = _questions.questions[index][_i + 1];
         }
     }
     localStorage.setItem('user-data', JSON.stringify(user));
@@ -190,27 +185,17 @@ function initQuestion(index) {
  */
 function checkUserType() {
 
-    let answers = user.answers;
+    var answers = user.answers;
 
     // Вычислим сумму ответов 1, 3, 5 и 2, 4, 6
-    let sum135 = answers[0] + answers[2] + answers[4];
-    let sum246 = answers[1] + answers[3] + answers[5];
+    var sum135 = answers[0] + answers[2] + answers[4];
+    var sum246 = answers[1] + answers[3] + answers[5];
 
     /* 
         Если сумма ответов больше или равна 5 - ответ 2 выбран 2 и более раз
         Если сумма ответов меньше или равна 4 - ответ 1 выбран 2 и более раз
     */
-    if (sum135 >= 5 && sum246 <= 4)
-        return __WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */].realizer;
-    else if (sum135 <= 4 && sum246 <= 4)
-        return __WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */].organizer;
-    else if (sum135 >= 5 && sum246 >= 5)
-        return __WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */].thinker;
-    else if (sum135 <= 4 && sum246 >= 5)
-        return __WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */].innovator;
-    else
-        return 'Unknown';
-
+    if (sum135 >= 5 && sum246 <= 4) return _types.types.realizer;else if (sum135 <= 4 && sum246 <= 4) return _types.types.organizer;else if (sum135 >= 5 && sum246 >= 5) return _types.types.thinker;else if (sum135 <= 4 && sum246 >= 5) return _types.types.innovator;else return 'Unknown';
 }
 
 /** 
@@ -218,11 +203,12 @@ function checkUserType() {
 */
 function finishInterview() {
     localStorage.clear();
+    bannerWrapper.classList.remove('banner--no-image');
     startWrapper.classList.add('hidden');
     questionWrapper.classList.add('hidden');
     finishWrapper.classList.remove('hidden');
 
-    let userType = checkUserType();
+    var userType = checkUserType();
     document.querySelector('.banner__user-type').innerHTML = userType;
 }
 
@@ -230,13 +216,11 @@ function finishInterview() {
  * Переводит пользователя на страницу с благодарностями
  */
 function learnMore() {
-    let userType = Object.keys(__WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */]).find(key => __WEBPACK_IMPORTED_MODULE_2__modules_types_js__["a" /* types */][key] === checkUserType());
-    window.location.href = `${finalUrl}?sociotype=${userType}`;
+    var userType = Object.keys(_types.types).find(function (key) {
+        return _types.types[key] === checkUserType();
+    });
+    window.location.href = finalUrl + '?sociotype=' + userType;
 }
-
-
-
-
 
 /***/ }),
 /* 1 */
@@ -246,10 +230,15 @@ function learnMore() {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-const questions = {
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var questions = exports.questions = {
     1: {
         1: 'Обычно я знаю, как уговорить или попросить человека что-либо сделать.',
         2: 'Я предпочитаю убеждать человека силой логических доводов.'
@@ -260,37 +249,38 @@ const questions = {
     },
     3: {
         1: 'У меня много друзей и еще больше знакомых. Я легко завожу новые знакомства.',
-        2: 'Я очень избирателен в общении. Редко кому могу рассказать о своих переживаниях.',
+        2: 'Я очень избирателен в общении. Редко кому могу рассказать о своих переживаниях.'
     },
     4: {
         1: 'Люблю работать быстро, не раздумывая по пустякам.',
-        2: 'Стараюсь обдумывать всю получаемую информацию.',
+        2: 'Стараюсь обдумывать всю получаемую информацию.'
     },
     5: {
         1: 'В непредсказуемых обстоятельствах я чувствую себя немного неуверенно и скованно.',
-        2: 'Нестандартная ситуация активизирует меня.',
+        2: 'Нестандартная ситуация активизирует меня.'
     },
     6: {
         1: 'К своей цели иду последовательно, руководствуясь планом.',
-        2: 'Предпочитаю не «идти в гору», а обходить ее и не лезть напролом в достижении цели.',
-    },
+        2: 'Предпочитаю не «идти в гору», а обходить ее и не лезть напролом в достижении цели.'
+    }
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = questions;
-
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-const types = {
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var types = exports.types = {
     realizer: 'Реализатор',
     organizer: 'Организатор',
     thinker: 'Мыслитель',
-    innovator: 'Инноватор',
+    innovator: 'Инноватор'
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = types;
-
 
 /***/ })
 /******/ ]);
