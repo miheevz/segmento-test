@@ -21,7 +21,7 @@ let user = {
 // Events
 document.addEventListener('DOMContentLoaded', initUser);
 startBtn.addEventListener('click', startInterview);
-finishBtn.addEventListener('click', finishInterview);
+finishBtn.addEventListener('click', learnMore);
 
 /** 
  * Инициализирует пользователя. 
@@ -146,10 +146,15 @@ function finishInterview() {
     finishWrapper.classList.remove('hidden');
 
     let userType = checkUserType();
-    console.log(userType);
+    document.querySelector('.banner__user-type').innerHTML = userType;
+}
 
-    //window.location.href = `${finalUrl}?sociotype=${userType}`;
-
+/**
+ * Переводит пользователя на страницу с благодарностями
+ */
+function learnMore() {
+    let userType = Object.keys(types).find(key => types[key] === checkUserType());
+    window.location.href = `${finalUrl}?sociotype=${userType}`;
 }
 
 
