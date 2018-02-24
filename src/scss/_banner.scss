@@ -1,28 +1,57 @@
 @import 'vars';
 
 .banner{
+    position: relative;
     text-align: center;
     width: $banner-width;
     height: $banner-height;
-    background-color: #998f82;
+    border: 1px solid #000;
     margin-bottom: 15px;
     padding: 0 15px;
+    overflow: hidden;
+    &:before {
+        background: url(../images/img_2.jpg) center center no-repeat $light-brown;
+        background-size: cover;
+        width: $banner-width;
+        height: $banner-height;
+        z-index: -1;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation: zoomOut 3s ease-in;
+    }
+
+    &--no-image{
+        &:before{
+            background: $light-brown;
+        }
+    }
 
     &__title{
         color: #000;
         font-weight: bold;
         font-size: 24px;
-        padding: 25px 0 15px;
+        padding: 15px 0;
+        &--white{
+            color: #fff;
+        }
     }
     &__btn{
         display: block;
-        width: 100%;
+        width: 210px;
         font-weight: bold;
         font-size: 20px;
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
     }
     &__user-type{
         text-transform: uppercase;
-        font-size: 24px;
+        font-size: 30px;
     }
 }
 
@@ -48,5 +77,11 @@
             cursor: pointer;
         }
     }
+}
+
+.main-title{
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: normal;
 }
 

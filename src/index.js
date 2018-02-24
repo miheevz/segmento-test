@@ -4,6 +4,7 @@ import { questions } from './modules/questions.js';
 import { types } from './modules/types.js';
 
 let finalUrl = 'https://segmento.ru/survey_thankyou',
+    bannerWrapper = document.querySelector('.banner'),
     startBtn = document.getElementById('btn-start'),
     finishBtn = document.getElementById('btn-finish'),
     startWrapper = document.querySelector('.banner__item--start'),
@@ -50,6 +51,7 @@ function isUserReturned() {
 */
 function startInterview() {
     localStorage.clear();
+    bannerWrapper.classList.add('banner--no-image');
     startWrapper.classList.add('hidden');
     questionWrapper.classList.remove('hidden');
     initQuestion(user.nextQuestion);
@@ -141,6 +143,7 @@ function checkUserType() {
 */
 function finishInterview() {
     localStorage.clear();
+    bannerWrapper.classList.remove('banner--no-image');
     startWrapper.classList.add('hidden');
     questionWrapper.classList.add('hidden');
     finishWrapper.classList.remove('hidden');

@@ -4,12 +4,17 @@
 body{
     font-family: $ptsans;
     font-size: 16px;
+    background: $background-color;
 }
 .container{
-    width: 1140px;
-    margin: 0 auto;
+    width: $banner-width;
+    margin: 50px auto;
 }
 
 .hidden{
     display: none;
+}
+
+.text-normal{
+    font-weight: normal;
 }
