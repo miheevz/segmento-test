@@ -10,16 +10,23 @@
     },
     "rules": {
         "indent": [
-            "error",
-            "tab"
+            "warn",
+            4
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
+        ],
+        "no-console": 0,
+        "no-unused-vars": [
+            "warn"
+        ],
+        "no-debugger": [
+            "warn"
         ]
     }
 }
