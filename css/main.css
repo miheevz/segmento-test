@@ -33,6 +33,9 @@ body {
 .hidden {
   display: none; }
 
+.text-normal {
+  font-weight: normal; }
+
 /* COLORS */
 /* FONTS */
 .btn {
@@ -72,13 +75,15 @@ body {
     bottom: 0;
     -webkit-animation: zoomOut 3s ease-in;
             animation: zoomOut 3s ease-in; }
-  .banner--no-image {
-    background-image: none; }
+  .banner--no-image:before {
+    background: #998f82; }
   .banner__title {
     color: #000;
     font-weight: bold;
     font-size: 24px;
-    padding: 25px 0 15px; }
+    padding: 15px 0; }
+    .banner__title--white {
+      color: #fff; }
   .banner__btn {
     display: block;
     width: 210px;
@@ -90,7 +95,7 @@ body {
     right: 15px; }
   .banner__user-type {
     text-transform: uppercase;
-    font-size: 24px; }
+    font-size: 30px; }
 
 .question-label {
   color: #fff;
