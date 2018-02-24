@@ -1,3 +1,5 @@
+import "ie-array-find-polyfill";
+
 import './scss/main.scss';
 
 import { questions } from './modules/questions.js';
