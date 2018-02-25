@@ -20,11 +20,11 @@ let user = {
 };
 
 
-
 // Events
 document.addEventListener('DOMContentLoaded', initUser);
 startBtn.addEventListener('click', startInterview);
 finishBtn.addEventListener('click', learnMore);
+
 
 /** 
  * Инициализирует пользователя. 
@@ -60,6 +60,7 @@ function startInterview() {
 }
 
 /**
+ * Инициализирует вопрос
  * 
  * @param {number} index Номер вопроса
  */
