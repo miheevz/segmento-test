@@ -92,7 +92,7 @@ body {
   padding: 0 15px;
   overflow: hidden; }
   .banner:before {
-    background: url(images/img2.jpg) center center no-repeat #998f82;
+    background: url(../images/img2.jpg) center center no-repeat #998f82;
     background-size: cover;
     width: 240px;
     height: 400px;
