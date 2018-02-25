@@ -72,9 +72,11 @@
 
 __webpack_require__(1);
 
-var _questions = __webpack_require__(2);
+__webpack_require__(2);
 
-var _types = __webpack_require__(3);
+var _questions = __webpack_require__(3);
+
+var _types = __webpack_require__(4);
 
 var finalUrl = 'https://segmento.ru/survey_thankyou',
     bannerWrapper = document.querySelector('.banner'),
@@ -129,6 +131,7 @@ function startInterview() {
 }
 
 /**
+ * Инициализирует вопрос
  * 
  * @param {number} index Номер вопроса
  */
@@ -224,12 +227,50 @@ function learnMore() {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+if (!Array.prototype.find) {
+    Object.defineProperty(Array.prototype, 'find', {
+        value: function (predicate) {
+
+            if (this == null) {
+                throw new TypeError('this is null or not defined');
+            }
+
+            var obj = Object(this);
+            var len = obj.length >>> 0;
+
+            if (typeof predicate !== 'function') {
+                throw new TypeError('predicate must be a function');
+            }
+
+            var thisArg = arguments[1];
+
+            var index = 0;
+
+            while (index < len) {
+                var iValue = obj[index];
+                if (predicate.call(thisArg, iValue, index, obj)) {
+                    return iValue;
+                }
+                index++;
+            }
+
+            return undefined;
+        }
+    });
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -266,7 +307,7 @@ var questions = exports.questions = {
 };
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
